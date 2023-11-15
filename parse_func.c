@@ -15,7 +15,7 @@ void push(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	layer->n = global_vars->arg;
+	layer->n = global_vars.arg;
 	layer->next = NULL;
 	layer->prev = *stack;
 	if (!(is_empty(*stack)))
@@ -39,5 +39,6 @@ void pall(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
 	while (temp)
 	{
 		printf("%d\n", temp->n);
+		temp = temp->prev;
 	}
 }

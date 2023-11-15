@@ -1,6 +1,6 @@
 #include "monty.h"
 
-vars_global *global_vars;
+vars_global global_vars;
 
 /**
  * main - main function
