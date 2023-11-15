@@ -19,6 +19,16 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
+
+	global_vars = malloc(sizeof(vars_global));
+    if (global_vars == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
+	global_vars->file = NULL;
+	global_vars->arg = 0;
+	global_vars->line = NULL;
 	/* reading the file*/
 	read_file(argv[1], &stack);
 	exit(EXIT_SUCCESS);
