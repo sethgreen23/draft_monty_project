@@ -21,5 +21,7 @@ int main(int argc, char **argv)
 	}
 	/* reading the file*/
 	read_file(argv[1], &stack);
+	if (!is_empty(stack))
+		free_stack(&stack);
 	return (0);
 }
