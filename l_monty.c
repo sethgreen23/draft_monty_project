@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
         fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
     }
+<<<<<<< HEAD
 
     file = fopen(argv[1], "r");
     if (file == NULL)
@@ -32,5 +33,7 @@ int main(int argc, char *argv[])
 
     }
     exit(EXIT_SUCCESS);
+=======
+>>>>>>> 02b1b148a1fec7d21c216b193255449b229ee6c5
 }
 

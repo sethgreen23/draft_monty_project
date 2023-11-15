@@ -11,6 +11,7 @@ void read_file(char *filename, stack_t **stack)
 {
 	size_t length = 0;
 	ssize_t line_read = 0;
+	char *opcode;
 
 	/*Open the file*/
 	global_vars->file = fopen(filename, "r");
@@ -20,12 +21,19 @@ void read_file(char *filename, stack_t **stack)
 		exit(EXIT_FAILURE);
 	}
 	/*read the lines*/
-	global_vars->buffer = NULL;
-	while ((line_read = getline(&global_vars->buffer, &length, global_vars->file)) != -1)
-	{
 
-		global_vars->buffer = NULL;
+	global_vars->line = NULL;
+	while ((line_read = getline(&global_vars->line, &length, global_vars->file)) != -1)
+	{
+		opcode = parse_line();
 	}
 }
 
-
+/**
+ * parse_line - parse the line
+ *
+ * Return: opcode or NULL
+ */
+char *parse_line()
+{
+}
