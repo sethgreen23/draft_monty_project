@@ -12,6 +12,7 @@ void read_file(char *filename, stack_t **stack)
 	size_t len = 0;
 	ssize_t lread = 0;
 	char *opcode;
+	int line_num = 0;
 
 	/*Open the file*/
 	global_vars->file = fopen(filename, "r");
@@ -26,6 +27,13 @@ void read_file(char *filename, stack_t **stack)
 	while ((lread = getline(&global_vars->line, &len, global_vars->file)) != -1)
 	{
 		opcode = parse_line();
+		if (opcode == NULL)
+		{
+			line_num++;
+			continue;
+		}
+
+		line_num++;
 	}
 }
 
@@ -82,4 +90,28 @@ int is_numerical(char *str)
 		i++;
 	}
 	return (1);
+}
+/**
+ * get_opcode_func - get associete function to the opcode
+ * @opcode: string
+ *
+ * Return: appropriete function or NULL
+ */
+inst_fun get_opcode_func(char *opcode)
+{
+	int i = 0;
+
+	instruction_t instructions[3] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}};
+	while (instructions[i].f != NULL)
+	{
+		if (strcmp(instructions[i].opcode, opcode) == 0)
+		{
+			return (instructions[i].f);
+		}
+		i++;
+	}
+	return (NULL);
 }
