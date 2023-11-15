@@ -113,9 +113,10 @@ inst_fun get_opcode_func(char *opcode)
 {
 	int i = 0;
 
-	instruction_t instructions[3] = {
+	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}};
 	while (instructions[i].f != NULL)
 	{
