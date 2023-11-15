@@ -12,7 +12,7 @@ void read_file(char *filename, stack_t **stack)
 	size_t len = 0;
 	ssize_t lread = 0;
 	char *opcode;
-	int line_num = 0;
+	int line_num = 1;
 	inst_fun func;
 
 	/*Open the file*/
@@ -27,7 +27,7 @@ void read_file(char *filename, stack_t **stack)
 	global_vars->line = NULL;
 	while ((lread = getline(&global_vars->line, &len, global_vars->file)) != -1)
 	{
-		opcode = parse_line();
+		opcode = parse_line(line_num);
 		if (opcode == NULL)
 		{
 			line_num++;
@@ -47,10 +47,11 @@ void read_file(char *filename, stack_t **stack)
 
 /**
  * parse_line - parse the line
+ * @linenum: linenum
  *
  * Return: opcode or NULL
  */
-char *parse_line()
+char *parse_line(int linenum)
 {
 	char *opcode = NULL;
 	char *argument = NULL;
@@ -68,7 +69,7 @@ char *parse_line()
 		}
 		else
 		{
-			fprintf(stderr, "USAGE: push arg\n");
+			fprintf(stderr, "L%d: usage: push integer\n", linenum);
 			exit(EXIT_FAILURE);
 		}
 	}
