@@ -43,6 +43,11 @@ void read_file(char *filename, stack_t **stack)
 		func(stack, line_num);
 		line_num++;
 	}
+	if (fclose(global_vars->file) == -1)
+	{
+		fprintf(stderr, "Faliure closing the file\n");
+		exit(EXIT_FAILURE);
+	}		
 }
 
 /**

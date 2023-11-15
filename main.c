@@ -11,7 +11,7 @@ vars_global *global_vars;
  */
 int main(int argc, char **argv)
 {
-	stack_t stack;
+	stack_t *stack;
 
 	/* check if the arguments are different to 2*/
 	if (argc != 2)
