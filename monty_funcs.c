@@ -20,9 +20,11 @@ void read_file(char *filename, stack_t **stack)
 		exit(EXIT_FAILURE);
 	}
 	/*read the lines*/
-	while ((line_read = getline(&global_vars->buffer, &length, global_vars->file)) != -1)
+	global_vars->line = NULL;
+	while ((line_read = getline(&global_vars->line, &length, global_vars->file)) != -1)
 	{
-		/**/
-		line = parse_line()
+		global_vars->line = NULL;
 	}
 }
+
+
