@@ -1,6 +1,6 @@
 #include "monty.h"
 
-vars_global *global_vars;
+vars_global global_vars;
 
 /**
  * main - main function
@@ -21,6 +21,5 @@ int main(int argc, char **argv)
 	}
 	/* reading the file*/
 	read_file(argv[1], &stack);
-	exit(EXIT_SUCCESS);
 	return (0);
 }
