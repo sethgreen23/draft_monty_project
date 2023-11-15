@@ -7,18 +7,36 @@
  *
  * Return: nothing
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
 {
-	printf("push to stack");
+	stack_t *layer = malloc(sizeof(stack_t));
+	if (layer == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	layer->next = NULL;
+	layer->prev = *stack;
+	if (!(is_empty(*stack)))
+	{
+		(*stack)->next = layer;
+	}
+	*stack = layer;
 }
+
 /**
- * pall - push element to the stack
+ * pall - print the elements of the stack
  * @stack: stack
  * @line_number: line_number
  *
  * Return: nothing
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, __attribute__ ((unused)) unsigned int line_number)
 {
-	printf("pall stack");
+	stack_t *temp = *stack;
+
+	while (temp)
+	{
+		printf("%d\n", temp->n);
+	}
 }

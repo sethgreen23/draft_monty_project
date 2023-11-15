@@ -1,5 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +38,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct vars_global - global variables for the application
+ * struct struct vars_global - global variables for the application
  * @line: buffer
  * @file: file
  * @arg: argument
@@ -52,11 +53,15 @@ typedef struct vars_global
 	int arg;
 } vars_global;
 typedef void (*inst_fun)(stack_t **stack, unsigned int line_number);
-inst_fun get_opcode_func(char *str);
-extern vars_global *global_vars;
-void read_file(char *filename, stack_t **stack);
-char *parse_line(int linenum);
 
+inst_fun get_opcode_func(char *str);
+void read_file(char *filename, stack_t **stack);
+char *parse_line();
+int is_numerical(char *str);
+int is_empty(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+
+extern vars_global *global_vars;
+
 #endif

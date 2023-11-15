@@ -127,3 +127,7 @@ inst_fun get_opcode_func(char *opcode)
 	}
 	return (NULL);
 }
+int is_empty(stack_t *stack)
+{
+	return (stack == NULL);
+}
