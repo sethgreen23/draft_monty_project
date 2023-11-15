@@ -12,7 +12,7 @@ void read_file(char *filename, stack_t **stack)
 	size_t len = 0;
 	ssize_t lread = 0;
 	char *opcode;
-	int line_num = 1, close_num;
+	int line_num = 1;
 	inst_fun func;
 
 	/*Open the file*/
@@ -43,7 +43,6 @@ void read_file(char *filename, stack_t **stack)
 		func(stack, line_num);
 		line_num++;
 	}
-	close_num = fclose(global_vars->file);
 	fclose(global_vars->file);
 }
 
