@@ -13,6 +13,7 @@ void read_file(char *filename, stack_t **stack)
 	ssize_t lread = 0;
 	char *opcode;
 	int line_num = 0;
+	inst_fun func;
 
 	/*Open the file*/
 	global_vars->file = fopen(filename, "r");
@@ -32,7 +33,14 @@ void read_file(char *filename, stack_t **stack)
 			line_num++;
 			continue;
 		}
-
+		/*get the function related to the opcode*/
+		func = get_opcode_func(opcode);
+		if (func == NULL)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
+			exit(EXIT_FAILURE);
+		}
+		func(stack, line_num);
 		line_num++;
 	}
 }
@@ -66,6 +74,7 @@ char *parse_line()
 	}
 	return (opcode);
 }
+
 /**
  * is_numerical - is a number
  * @str: string to check
