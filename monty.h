@@ -54,5 +54,5 @@ typedef struct vars_global
 
 extern vars_global *global_vars;
 void read_file(char *filename, stack_t **stack);
-
+char *parse_line();
 #endif
