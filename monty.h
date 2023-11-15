@@ -48,7 +48,7 @@ typedef struct instruction_s
 typedef struct vars_global
 {
 	char *buffer;
-	File file;
+	FILE *file;
 	int arg;
 } vars_global;
 
