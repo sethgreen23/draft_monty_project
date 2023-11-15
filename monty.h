@@ -37,7 +37,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct struct vars_global - global variables for the application
+ * struct vars_global - global variables for the application
  * @line: buffer
  * @file: file
  * @arg: argument
