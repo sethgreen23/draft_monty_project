@@ -57,6 +57,8 @@ typedef void (*inst_fun)(stack_t **stack, unsigned int line_number);
 inst_fun get_opcode_func(char *str);
 void read_file(char *filename, stack_t **stack);
 char *parse_line();
+int is_numerical(char *str);
+int is_empty(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 

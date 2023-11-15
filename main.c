@@ -11,7 +11,7 @@ vars_global *global_vars;
  */
 int main(int argc, char **argv)
 {
-	stack_t *stack;
+	stack_t *stack = NULL;
 
 	/* check if the arguments are different to 2*/
 	if (argc != 2)
@@ -21,4 +21,6 @@ int main(int argc, char **argv)
 	}
 	/* reading the file*/
 	read_file(argv[1], &stack);
+	exit(EXIT_SUCCESS);
+	return (0);
 }
