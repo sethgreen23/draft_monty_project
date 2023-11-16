@@ -20,3 +20,16 @@ void add(stack_t **stack, unsigned int line_number)
 	(*stack)->prev->n = temp;
 	pop(stack, line_number);
 }
+
+/**
+ * nop - print the elements of the stack
+ * @stack: stack
+ * @line_number: line_number
+ *
+ * Return: nothing
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+}
