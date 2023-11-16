@@ -37,26 +37,11 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct vars_global - global variables for the application
- * @line: buffer
- * @file: file
- * @arg: argument
- *
- * Description: global variable for the application
- * for stack, queues, LIFO, FIFO
- */
-typedef struct vars_global
-{
-	char *line;
-	FILE *file;
-	int arg;
-} vars_global;
 typedef void (*inst_fun)(stack_t **stack, unsigned int line_number);
 
 inst_fun get_opcode_func(char *str);
 void read_file(char *filename, stack_t **stack);
-char *parse_line(int linenum);
+char *parse_line(int linenum, char *line);
 int is_numerical(char *str);
 int is_empty(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
@@ -71,7 +56,8 @@ void sub(stack_t **stack, unsigned int line_number);
 void divide(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
-
-extern vars_global *global_vars;
+int get_arg(void);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
 
 #endif

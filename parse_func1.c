@@ -12,7 +12,7 @@ void add(stack_t **stack, unsigned int line_number)
 {
 	int temp;
 
-	if ((*stack)->prev == NULL)
+	if (*stack == NULL || (*stack)->prev == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
@@ -55,7 +55,8 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * divide - div divides the second top element of the stack by the top eleme
+ * divide - div divides the second top element of the stack by the top
+ * element of the stack.
  * and operate pop, unless top == zero
  * @stack: stack
  * @line_number: line_number
@@ -82,7 +83,8 @@ void divide(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mul - multiplies the second top element of the stack with the top
+ * mul - multiplies the second top element of the stack with the
+ * top element of the stack.
  * and operate pop.
  * @stack: stack
  * @line_number: line_number

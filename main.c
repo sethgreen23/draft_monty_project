@@ -1,6 +1,5 @@
 #include "monty.h"
 
-vars_global *global_vars = NULL;
 /**
  * main - main function
  * @argc: arguments count
@@ -12,7 +11,6 @@ int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
 
-	global_vars = malloc(sizeof(vars_global));
 	/* check if the arguments are different to 2*/
 	if (argc != 2)
 	{
@@ -25,6 +23,5 @@ int main(int argc, char **argv)
 	{
 		free_stack(&stack);
 	}
-	free(global_vars);
 	return (0);
 }

@@ -9,16 +9,15 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *layer = NULL;
+	stack_t *layer = malloc(sizeof(stack_t));
 
 	(void)line_number;
-	layer = malloc(sizeof(stack_t));
 	if (layer == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	layer->n = global_vars->arg;
+	layer->n = get_arg();
 	layer->next = NULL;
 	layer->prev = *stack;
 	if (!is_empty(*stack))
@@ -107,7 +106,7 @@ void swap(stack_t **stack, unsigned int line_number)
 {
 	int temp;
 
-	if ((*stack)->prev == NULL)
+	if (*stack == NULL || (*stack)->prev == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);

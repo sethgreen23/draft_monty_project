@@ -1,5 +1,7 @@
 #include "monty.h"
 
+static int arg;
+
 /**
  * read_file - read the file lines
  * @filename: filename
@@ -11,24 +13,25 @@ void read_file(char *filename, stack_t **stack)
 {
 	size_t len = 0;
 	ssize_t lread = 0;
-	char *opcode;
+	char *opcode = NULL, *line = NULL;
 	int line_num = 1;
 	inst_fun func;
+	FILE *file;
 
 	/*Open the file*/
-	global_vars->file = fopen(filename, "r");
-	if (global_vars->file == NULL)
+	file = fopen(filename, "r");
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	/*read the lines*/
 
-	global_vars->line = NULL;
-	while ((lread = getline(&global_vars->line, &len, global_vars->file)) != -1)
+	line = NULL;
+	while ((lread = getline(&line, &len, file)) != -1)
 	{
-		opcode = parse_line(line_num);
-		if (opcode == NULL)
+		opcode = parse_line(line_num, line);
+		if (opcode == NULL || opcode[0] == '#')
 		{
 			line_num++;
 			continue;
@@ -43,31 +46,33 @@ void read_file(char *filename, stack_t **stack)
 		func(stack, line_num);
 		line_num++;
 	}
-	free(global_vars->line);
-	fclose(global_vars->file);
+	free(line);
+	fclose(file);
 }
 
 /**
  * parse_line - parse the line
  * @linenum: linenum
+ * @line: line
  *
  * Return: opcode or NULL
  */
-char *parse_line(int linenum)
+char *parse_line(int linenum, char *line)
 {
 	char *opcode = NULL;
 	char *argument = NULL;
 
 	/*start by tokenize the string to get the opcode*/
-	opcode = strtok(global_vars->line, " \n");
+	opcode = strtok(line, " \n");
 	if (opcode == NULL)
 		return (NULL);
+
 	if (strcmp(opcode, "push") == 0)
 	{
 		argument = strtok(NULL, " \n");
 		if (argument != NULL && is_numerical(argument))
 		{
-			global_vars->arg = atoi(argument);
+			arg = atoi(argument);
 		}
 		else
 		{
@@ -121,6 +126,12 @@ inst_fun get_opcode_func(char *opcode)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"div", divide},
+		{"sub", sub},
+		{"mul", mul},
+		{"mod", mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
 		{NULL, NULL}};
 	while (instructions[i].f != NULL)
 	{
@@ -132,13 +143,12 @@ inst_fun get_opcode_func(char *opcode)
 	}
 	return (NULL);
 }
+
 /**
- * is_empty - check if the stack is empty
- * @stack: stack
- *
- * Return: 1 if empty, 0 if not
+ * get_arg - return the arg variable
+ * Return: arg value
  */
-int is_empty(stack_t *stack)
+int get_arg(void)
 {
-	return (stack == NULL);
+	return (arg);
 }
