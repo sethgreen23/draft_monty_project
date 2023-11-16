@@ -1,7 +1,8 @@
 #include "monty.h"
 
 /**
- * add - print the elements of the stack
+ * add - Add first layer data to the sencond top one, and 
+ * remove the top
  * @stack: stack
  * @line_number: line_number
  *

@@ -44,7 +44,7 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 }
 
 /**
- * pint - print the elements of the stack
+ * pint - print the top most stack node
  * @stack: stack
  * @line_number: line_number
  *
@@ -61,7 +61,7 @@ void pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pop - print the elements of the stack
+ * pop - delete the top most layer of the stack
  * @stack: stack
  * @line_number: line_number
  *
