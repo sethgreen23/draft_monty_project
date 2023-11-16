@@ -38,7 +38,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct struct vars_global - global variables for the application
+ * struct vars_global - global variables for the application
  * @line: buffer
  * @file: file
  * @arg: argument
@@ -72,6 +72,6 @@ void divide(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 
-extern vars_global global_vars;
+extern vars_global *global_vars;
 
 #endif

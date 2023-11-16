@@ -16,16 +16,16 @@ void read_file(char *filename, stack_t **stack)
 	inst_fun func;
 
 	/*Open the file*/
-	global_vars.file = fopen(filename, "r");
-	if (global_vars.file == NULL)
+	global_vars->file = fopen(filename, "r");
+	if (global_vars->file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	/*read the lines*/
 
-	global_vars.line = NULL;
-	while ((lread = getline(&global_vars.line, &len, global_vars.file)) != -1)
+	global_vars->line = NULL;
+	while ((lread = getline(&global_vars->line, &len, global_vars->file)) != -1)
 	{
 		opcode = parse_line(line_num);
 		if (opcode == NULL)
@@ -43,8 +43,8 @@ void read_file(char *filename, stack_t **stack)
 		func(stack, line_num);
 		line_num++;
 	}
-	free(global_vars.line);
-	fclose(global_vars.file);
+	free(global_vars->line);
+	fclose(global_vars->file);
 }
 
 /**
@@ -59,7 +59,7 @@ char *parse_line(int linenum)
 	char *argument = NULL;
 
 	/*start by tokenize the string to get the opcode*/
-	opcode = strtok(global_vars.line, " \n");
+	opcode = strtok(global_vars->line, " \n");
 	if (opcode == NULL)
 		return (NULL);
 	if (strcmp(opcode, "push") == 0)
@@ -67,7 +67,7 @@ char *parse_line(int linenum)
 		argument = strtok(NULL, " \n");
 		if (argument != NULL && is_numerical(argument))
 		{
-			global_vars.arg = atoi(argument);
+			global_vars->arg = atoi(argument);
 		}
 		else
 		{
