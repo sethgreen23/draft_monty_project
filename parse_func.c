@@ -18,7 +18,7 @@ void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	layer->n = global_vars.arg;
 	layer->next = NULL;
 	layer->prev = *stack;
-	if (!(is_empty(*stack)))
+	if (!is_empty(*stack))
 	{
 		(*stack)->next = layer;
 	}
@@ -36,7 +36,7 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
-	while (temp)
+	while (temp != NULL)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->prev;
@@ -58,4 +58,35 @@ void pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	fprintf(stdout, "%d\n", (*stack)->n);
+}
+
+/**
+ * pop - print the elements of the stack
+ * @stack: stack
+ * @line_number: line_number
+ *
+ * Return: nothing
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = NULL;
+
+	if (is_empty(*stack))
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->prev == NULL)
+	{
+		(*stack)->next = NULL;
+		free(*stack), *stack = NULL;
+	}
+	else
+	{
+		temp = *stack;
+		*stack = (*stack)->prev;
+		temp->prev = NULL;
+		temp->next = NULL;
+		free(temp), temp = NULL;
+	}
 }

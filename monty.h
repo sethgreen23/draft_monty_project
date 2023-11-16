@@ -62,7 +62,7 @@ int is_empty(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
-
+void pop(stack_t **stack, unsigned int line_number);
 extern vars_global global_vars;
 
 void free_stack(stack_t **stack);
