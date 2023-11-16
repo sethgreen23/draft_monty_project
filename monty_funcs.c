@@ -130,6 +130,12 @@ inst_fun get_opcode_func(char *opcode)
 	}
 	return (NULL);
 }
+/**
+ * is_empty - check if the stack is empty
+ * @stack: stack
+ *
+ * Return: 1 if empty, 0 if not
+ */
 int is_empty(stack_t *stack)
 {
 	return (stack == NULL);
