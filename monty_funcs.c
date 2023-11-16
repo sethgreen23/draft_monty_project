@@ -119,6 +119,7 @@ inst_fun get_opcode_func(char *opcode)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
+		{"add", add},
 		{NULL, NULL}};
 	while (instructions[i].f != NULL)
 	{
