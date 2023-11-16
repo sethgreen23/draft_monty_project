@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * add - Add first layer data to the sencond top one, and 
+ * add - Add first layer data to the sencond top one, and
  * remove the top
  * @stack: stack
  * @line_number: line_number
@@ -55,16 +55,17 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - div divides the second top element of the stack by the top element of the stack.
+ * divide - div divides the second top element of the stack by the top eleme
  * and operate pop, unless top == zero
  * @stack: stack
  * @line_number: line_number
  *
  * Return: nothing
  */
-void div(stack_t **stack, unsigned int line_number)
+void divide(stack_t **stack, unsigned int line_number)
 {
 	int result = 0;
+
 	if (*stack == NULL || (*stack)->prev == NULL)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
@@ -81,7 +82,7 @@ void div(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mul - multiplies the second top element of the stack with the top element of the stack.
+ * mul - multiplies the second top element of the stack with the top
  * and operate pop.
  * @stack: stack
  * @line_number: line_number
@@ -91,40 +92,14 @@ void div(stack_t **stack, unsigned int line_number)
 void mul(stack_t **stack, unsigned int line_number)
 {
 	int result = 0;
+
 	if (*stack == NULL || (*stack)->prev == NULL)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
-	result = (*stack)->prev->n * (*stack)->n;
-	(*stack)->prev->n = result;
-	pop(stack, line_number);
-}
 
-/**
- * mod - computes the rest of the division of the second top element of 
- * the stack by the top element of the stack.
- * and operate pop, unless top == zero
- * @stack: stack
- * @line_number: line_number
- *
- * Return: nothing
- */
-void mod(stack_t **stack, unsigned int line_number)
-{
-	int result = 0;
-	if (*stack == NULL || (*stack)->prev == NULL)
-	{
-		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	if ((*stack)->n == 0)
-	{
-		fprintf(stderr, "L%d: division by zero\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	result = (*stack)->prev->n % (*stack)->n;
+	result = (*stack)->prev->n * (*stack)->n;
 	(*stack)->prev->n = result;
 	pop(stack, line_number);
 }
