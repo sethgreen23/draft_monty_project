@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 	read_file(argv[1], &stack);
 	if (!is_empty(stack))
 	{
-		printf("IM HERE\n");
 		free_stack(&stack);
 	}
 	return (0);
