@@ -7,9 +7,12 @@
  *
  * Return: nothing
  */
-void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *layer = malloc(sizeof(stack_t));
+	stack_t *layer = NULL;
+
+	(void)line_number;
+	layer = malloc(sizeof(stack_t));
 	if (layer == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -32,10 +35,11 @@ void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
  *
  * Return: nothing
  */
-void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
+	(void)line_number;
 	while (temp != NULL)
 	{
 		fprintf(stdout, "%d\n", temp->n);
