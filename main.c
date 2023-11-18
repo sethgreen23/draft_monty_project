@@ -1,5 +1,5 @@
 #include "monty.h"
-
+static int mode = 1;
 /**
  * main - main function
  * @argc: arguments count
@@ -24,4 +24,23 @@ int main(int argc, char **argv)
 		free_stack(&stack);
 	}
 	return (0);
+}
+/**
+ * get_mode - get the current mode
+ *
+ * Return: mode
+ */
+int get_mode(void)
+{
+	return (mode);
+}
+/**
+ * set_mode - get the current mode
+ * @val: val
+ *
+ * Return: set mode to 1 or 2
+ */
+void set_mode(int val)
+{
+	mode = val;
 }

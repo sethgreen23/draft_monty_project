@@ -9,22 +9,46 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *layer = malloc(sizeof(stack_t));
+	stack_t *layer = NULL, *temp = NULL;
 
 	(void)line_number;
+	layer = malloc(sizeof(stack_t));
 	if (layer == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	layer->n = get_arg();
-	layer->next = NULL;
-	layer->prev = *stack;
-	if (!is_empty(*stack))
+	if (get_mode() == 1)
 	{
-		(*stack)->next = layer;
+		/*printf("Stack Mode\n");*/
+		layer->next = NULL;
+		layer->prev = *stack;
+		if (!is_empty(*stack))
+		{
+			(*stack)->next = layer;
+		}
+		*stack = layer;
 	}
-	*stack = layer;
+	else if (get_mode() == 2)
+	{
+		/*printf("Queue Mode\n");*/
+		if (is_empty(*stack))
+		{
+			layer->next = NULL;
+			layer->prev = NULL;
+			*stack = layer;
+		}
+		else
+		{
+			temp = *stack;
+			while (temp->prev != NULL)
+				temp = temp->prev;
+			layer->next = temp;
+			layer->prev = NULL;
+			temp->prev = layer;
+		}
+	}
 }
 
 /**
@@ -38,6 +62,7 @@ void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
 
+	/*printf("Print function\n");*/
 	(void)line_number;
 	while (temp != NULL)
 	{

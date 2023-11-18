@@ -134,6 +134,8 @@ inst_fun get_opcode_func(char *opcode)
 		{"pstr", pstr},
 		{"rotl", rotl},
 		{"rotr", rotr},
+		{"queue", queue},
+		{"stack", stack},
 		{NULL, NULL}};
 	while (instructions[i].f != NULL)
 	{
